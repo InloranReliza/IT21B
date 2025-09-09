@@ -1,11 +1,12 @@
-const readline=require("readline");
+//Console Input
+const readline=require("require");
 
 const r1 = readline.createInterface({
 input:process.stdin,
-output: process.stdn
-
+output: process.stdout
 })
 
+function mainMenu(){
 console.log("-------------------------");
 console.log("Factorial Application");
 console.log("1. Say Hello");
@@ -14,6 +15,8 @@ console.log("3. Exit Application");
 console.log("-------------------------");
 
 r1.question("Enter your choice (1-3): ", choice =>{
+    
+
 console.log(choice);
 
 if (choice === "1"){
