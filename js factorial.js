@@ -15,15 +15,27 @@ console.log("3. Exit Application");
 console.log("-------------------------");
 
 r1.question("Enter your choice (1-3): ", choice =>{
-    
-
-console.log(choice);
 
 if (choice === "1"){
+    sayHello();
+}else if (choice ==="2"){
+    computeFactorial();
+}else if (choice === "3"){
+    exitProgram();
+} else {
+      console.log("Invalid choice. Please Try Again");
+}
+
+})
+}
+
+function sayHello(){
     console.log("Hello");
-}  else if (choice === "2"){
+}
+
+function computeFactorial(){
     console.log("Factorial");
-    
+
     r1.question("Please enter a number for factorial: ", numStr =>{
         let num = parseInt(numStr);
 
@@ -35,15 +47,38 @@ if (choice === "1"){
                for  (let i=1; i <= num; i++){
                 fact *=i;
                }
+
                console.log("The factorial of " + num + " is " + fact);
         }
+        backToMenu();
     })
-} else if (choice === "3"){
+} 
+
+function exitProgram(){
     console.log("Exiting Application");
-} else {
-    console.log("Invalid Choice. Please Try Again")
+    r1.close();
+
 }
-})
 
+function backToMenu(){
+    console.log("--------------");
+    console.log("1. Back to menu");
+    console.log("2. Exit");
 
+    r1.question("What would you like to do next? (1-2) ", (backToMenuChoice)=>{
+
+        if(backToMenuChoice==="1"){
+            console.clear();
+            mainMenu();
+        }else if (backToMenuChoice ==="2"){
+            exitProgram();
+        }else {
+            console.log("Invalid Choice. Please Try Again");
+            backToMenu();
+        }
+    })
+
+}
+
+mainMenu();
    
