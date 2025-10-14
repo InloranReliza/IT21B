@@ -1,4 +1,4 @@
-hsrc<!DOCTYPE html>
+<!DOCTYPE html>
 < lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,33 +8,34 @@ hsrc<!DOCTYPE html>
 <body>
     <h1>Line Chart</h1>
     <div>
-    <canvas id="myChart"></canvas>
+        <canvas id="lineChart"></canvas>
     </div>
-
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </script>
-   class LineChart {
+   class LineChart{
     constructor(canvasId, dataUrl){
         this.canvasId = canvasId;
         this.dataUrl = dataUrl;
         this.chart = null;
-    
-    }
+}
+
       renderChart(data){
         const ctx =document.getElementById(this.canvasId).getContext("2d");
+
         //
         this.chart = new Chart(ctx,{
-         type: "line",
-         data: {
+         type:"line",
+         data:{
             label:,data.labels,
-            datasets: [{
+            datasets:[{
                 label: "Monthly Data",
-                data: datavalues,
+                data: data.values,
                 borderwidth:1
             }]
          },
+
          options: {
             scales: {
                 y: {
@@ -46,8 +47,8 @@ hsrc<!DOCTYPE html>
      //
       }
     
-    Async fetchData() {
-        try{
+    async fetchData(){
+        try {
             const response = await fetch(this.dataUrl);
 
             if (!response.ok) throw new Error('Failed to load data:${response.statusText}');
@@ -55,14 +56,25 @@ hsrc<!DOCTYPE html>
             const data = await response.json();
             return data;
 
-        }catch{
+        }catch(error){
             console.error ("Error fetching data:", error);
             return null;
         }
-
     }
         
+    async init(){
+        const data = await this.fetchData();
+        if(data){
+            this.renderChart(data);
+        }
     }
+}
+
+    document.addEventListener("DOMContentLoaded",() =>{
+        const Chart = new LineChart("lineChart","linedata.json");
+        chart.init();
+}
+
         </script>
         </html>
     
