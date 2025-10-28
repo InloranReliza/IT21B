@@ -76,7 +76,7 @@ class radarChart{
         this.chart = new Chart(ctx,{
          type:"line",
          data:{
-            label:,data.labels,
+            label:data.labels,
             datasets:[{
                 label: "Monthly Data",
                 data: data.values,
@@ -118,7 +118,7 @@ class radarChart{
     }
 }
 
-    document.addEventListener"DOMContentLoaded",() =>{
+    document.addEventListener("DOMContentLoaded"),() =>{
         const Chart = new LineChart("lineChart","linedata.json");
         chart.init();
 }
