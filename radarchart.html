@@ -19,45 +19,22 @@
             this.dataUrl = dataUrl;
             this.chart = null;
         }
-
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar Chart</title>
-</head>
-<body>
-    <h1>Radar Chart</h1>
-    <div>
-        <canvas id="radarChart"></canvas>
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
     
-    class RadarChart{
-        constructor(canvasId, dataUrl){
-            this.canvasId = canvasId;
-            this.dataUrl = dataUrl;
-            this.chart = null;
-        }
+    
 
         renderChart(data){
             const ctx = document.getElementById(this.canvasId).getContext("2d");
 
             this.chart = new Chart (ctx,{
                 type: "radar",
-                data: {
+                data:{
+                    //labels
                     labels: data.labels,
-                    datasets: [{
-                        label: "Skills Assessment",
-                        data: data.values,
-                        borderWidth: 1
-                    }]
+                    //Datasets
+                    datasets:data.datasets
                 },
-                options: {
-                    scales: {
+                options:{
+                    responsive: {
                         r: {
                             beginAtZero: true
                         }
@@ -90,5 +67,5 @@
         const chart = new RadarChart("radarChart", "radardata.json");
         chart.init();
     });
-</script>
+</>
 </html>
